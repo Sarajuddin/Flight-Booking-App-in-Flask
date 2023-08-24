@@ -1,0 +1,104 @@
+{% extends 'dashboard.html' %}
+
+
+{% block title %}
+    <title>Book Your Seats Now | Flight Bookings</title>
+{% endblock title %}
+    
+
+{% block body %}
+    <div class="container my-5">
+        <div class="bg-secondary text-center rounded p-1">
+            <h3>Fill Some Details of the Passenger</h3>
+        </div>
+
+        <div class="mt-3">
+            <form action="/book-ticket/{{data.0}}" method="post">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+                <label for="">Passenger Name</label>
+                <input type="text" name="name" class="form-control" required>
+
+                <label for="">Passenger Age</label>
+                <input type="number" min="1" max="100" name="age" class="form-control" required>
+
+                <label for="">Number of Passengers</label>
+                <input type="number" min="1" max="2" name="passengercount" class="form-control" required>
+
+                <label for="">From</label>
+                <!-- <input type="text" name="from" class="form-control" required> -->
+                <select name="from" required class="form-select">
+                    
+                    {% for flight in flights %}
+                        <option value="{{flight.1}}">{{flight.1}}</option>
+                    {% endfor %}
+                    <!-- <option value="Delhi">Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Chandigarh">Chadigarh</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Haridwar">Haridwar</option>
+                    <option value="Jammu">Jammu</option>
+                    <option value="Gujarat">Gujarat</option> -->
+                    
+                </select>
+
+                <label for="">To</label>
+                <!-- <input type="text" name="to" class="form-control" required> -->
+                <select name="to" required class="form-select">
+                    {% for flight in flights %}
+                        <option value="{{flight.2}}">{{flight.2}}</option>
+                    {% endfor %}
+                    <!-- <option value="Delhi">Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Chandigarh">Chadigarh</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Haridwar">Haridwar</option>
+                    <option value="Jammu">Jammu</option>
+                    <option value="Gujarat">Gujarat</option>
+                         -->
+                </select>
+
+                <label for="">Flight Name</label>
+                <!-- <input type="text" name="flightname" class="form-control" required> -->
+                <select name="flightname" required class="form-select">
+                    <!-- <option value="Express">Express</option>
+                    <option value="Super Fast">Super Fast</option>
+                    <option value="Passenger">Passenger</option> -->
+                    {% for flight in flights %}
+                        <option value="{{flight.3}}">{{flight.4}} - {{flight.3}}</option>
+                    {% endfor %}
+                        
+                </select>
+
+                <label for="">Departure Date</label>
+                <input type="date" name="dep_date" class="form-control" required>
+
+                <label for="">Class</label>
+                <select name="bookingclass" required class="form-select">
+                    
+                    {% for ftype in flighttypes %}
+                        <option value="{{ftype.0}}">{{ftype.1}}</option>
+                    {% endfor %}
+                        
+                </select>
+                <!-- <select name="bookingclass" id="" class="form-select" required>
+                    <option value="">Select a Class</option>
+                    <option value="Business">Business</option>
+                    <option value="Economic">Economic</option>
+                </select> -->
+
+                <input type="submit" class="form-control btn btn-primary">
+            </form>
+        </div>
+    </div>
+{% endblock body %}
+    

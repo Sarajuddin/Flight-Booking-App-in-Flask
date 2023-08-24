@@ -1,0 +1,52 @@
+{% extends 'admin-dashboard.html' %}
+
+
+{% block title %}
+    <title>Admin | All Bookings</title>
+{% endblock title %}
+    
+
+{% block body %}
+<div class="container my-5">
+    {% if bookings %}
+      
+    <div class="my-3">
+        <h5 class="text-success">All Bookings List : </h5>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Total Passengers</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Flight Name</th>
+            <th>Departure Date</th>
+            <th>Class</th>
+            <th>PNR Number</th>
+        </tr>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{booking.0}}</td>
+                <td>{{booking.1}}</td>
+                <td>{{booking.2}}</td>
+                <td>{{booking.3}}</td>
+                <td>{{booking.4}}</td>
+                <td>{{booking.5}}</td>
+                <td>{{booking.6}}</td>
+                <td>{{booking.7}}</td>
+                <td>{{booking.8}}</td>
+                <td>{{booking.9}}</td>
+            </tr>
+        {% endfor %}
+            
+    </table>
+    {% else %}
+    <div class="mt-3">
+        <h5 class="text-danger">There is no booking here.</h5>
+    </div>
+    {% endif %}
+</div>
+{% endblock body %}
+    

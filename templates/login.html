@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <h2>Please Login here</h2>
+    {% if error %}
+      <h4>{{error}}</h4>
+    {% endif %}
+    <form action="/login/{{status}}" method="post">
+        <input type="text" name="username" placeholder="Username" required> <br> <br>
+        <input type="password" name="password" placeholder="Password" required> <br> <br>
+        <input type="submit">
+    </form>
+    <p>New here? <a href="/register/{{status}}">Create an Account</a></p>
+
+</body>
+</html>

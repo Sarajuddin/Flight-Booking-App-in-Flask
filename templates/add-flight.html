@@ -1,0 +1,32 @@
+{% extends 'admin-dashboard.html' %}
+
+{% block title %} 
+    <title>Add Flights | Admin</title>
+{% endblock %}
+
+
+{% block body %}
+    <div class="container mt-5">
+        <h4 class="text-center p-1 rounded bg-secondary">Add Flight Details</h4>
+    </div>
+    <div class="container my-3">
+        <form action="/dashboard/add-flight" method="post">
+            <input type="text" name="source" placeholder="Source" required class="form-control mb-3">
+            <input type="text" name="destination" placeholder="Destination" required class="form-control mb-3">
+            <input type="text" name="flight_name" placeholder="Flight Name" required class="form-control mb-3">
+            <input type="number" name="flight_number" placeholder="Flight Number" required class="form-control mb-3">
+            <input type="number" name="ticket_cost" placeholder="Ticket Cost" required class="form-control mb-3">
+            <input type="number" min="0" max="100" name="taxes" placeholder="Taxes (GST Inclusive)" required class="form-control mb-3">
+            <!-- <input type="number" name="total_price" placeholder="Total Price" required class="form-control mb-3"> -->
+            <select name="flight_type" required class="form-select mb-3">
+                <option value="">Select an Option</option>
+                {% for flight_type in flight_types %}
+                    <option value="{{flight_type.0}}">{{flight_type.1}}</option>
+                {% endfor %}
+                    
+            </select>
+            <input type="submit" class="form-control btn btn-outline-secondary">
+        </form>
+    </div>
+{% endblock body %}
+    
